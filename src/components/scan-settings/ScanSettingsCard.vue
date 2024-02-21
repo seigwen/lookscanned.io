@@ -26,6 +26,9 @@
           <BlurSetting v-model:blur="config.blur" />
           <NoiseSetting v-model:noise="config.noise" />
           <ScaleSetting v-model:scale="config.scale" />
+          <n-flex justify="center">
+            <n-button type="warning" @click="reset">{{ t('settings.reset') }}</n-button>
+          </n-flex>
         </n-form>
       </n-collapse-item>
     </n-collapse>
@@ -33,7 +36,7 @@
 </template>
 
 <script lang="ts" setup>
-import { NCard, NForm, NSpace, NCollapse, NCollapseItem, NIcon } from 'naive-ui'
+import { NCard, NButton, NFlex, NForm, NSpace, NCollapse, NCollapseItem, NIcon } from 'naive-ui'
 import { AreaCustom } from '@vicons/carbon'
 import { ChevronDown12Regular } from '@vicons/fluent'
 
@@ -60,6 +63,12 @@ const props = defineProps<{
 const emit = defineEmits<{
   (e: 'update:config', config: ScanConfig): void
 }>()
+// const emit = defineEmits(['update:config','reset'])
 
 const config = useVModel(props, 'config', emit)
+
+const reset = ()=>{
+  emit('reset')
+}
+
 </script>

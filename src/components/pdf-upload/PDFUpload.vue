@@ -5,7 +5,7 @@
           <FolderOpen16Regular />
         </n-icon>
       </template>
-      <n-text>
+      <n-text style="color: rgb(238, 238, 238)">
         {{ uploaded ? t('settings.pdfReselectLabel') : t('settings.pdfSelectLabel') }}
       </n-text>
     </n-button>

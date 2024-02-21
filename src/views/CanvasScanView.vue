@@ -4,7 +4,7 @@
       <n-grid-item span="12 s:5 m:4 l:3">
         <n-space vertical>
           <PDFInfo @pdfReselected="pdf = $event" :pdf="pdf" />
-          <ScanSettingsCard v-if="pdf" v-model:config="config" />
+          <ScanSettingsCard v-if="pdf" v-model:config="config" @reset="resetConfig"/>
         </n-space>
       </n-grid-item>
       <n-grid-item v-if="pdf" span="12 s:7 m:8 l:9">
@@ -71,6 +71,10 @@ const pdf = ref<File | undefined>(undefined)
 // initExamplePDF()
 
 const config = ref<ScanConfig>(defaultConfig)
+const resetConfig = ()=>{
+  config.value = Object.assign({},defaultConfig)
+}
+
 const pdfRenderer = computed(() => {
   if (!pdf.value) return
 
