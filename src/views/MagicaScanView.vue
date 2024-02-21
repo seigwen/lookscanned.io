@@ -1,8 +1,5 @@
 <template>
   <MainContainer>
-    <div style="margin-bottom: 25px">
-      <BackToIndex />
-    </div>
     <n-grid x-gap="25" y-gap="25" :cols="12" item-responsive responsive="screen">
       <n-grid-item span="12 s:5 m:4 l:3">
         <n-space vertical>
@@ -38,7 +35,6 @@ import ScanSettingsCard from '@/components/scan-settings/ScanSettingsCard.vue'
 import PDFUpload from '@/components/pdf-upload/PDFUpload.vue'
 import { ref, computed, watch } from 'vue'
 import PDFURL from '@/assets/examples/pdfs/test.pdf'
-import BackToIndex from '@/components/buttons/BackToIndex.vue'
 import { useHead } from '@unhead/vue'
 import { useI18n } from 'vue-i18n'
 import { PDF } from '@/utils/pdf-renderer/pdfjs'

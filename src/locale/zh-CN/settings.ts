@@ -16,6 +16,7 @@ export const settings = {
   rotate: '旋转角度',
   rotateVariance: '旋转角度的随机度',
   pdfSelectLabel: '选择 PDF 文件',
+  pdfReselectLabel: '重新选择 PDF 文件',
   pdfNoSelectMessage: '尚未选择 PDF 文件',
   scale: '分辨率',
   brightness: '亮度',

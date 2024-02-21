@@ -1,9 +1,13 @@
 <template>
   <n-space vertical>
+    <n-flex justify="center" align="center">
+      <div>效果预览:</div>
+      <PreviewPagination v-model:page="page" :numPages="numPages" v-if="numPages >= 2" />
+    </n-flex>
     <SideBySidePreview>
-      <template #pdf>
+      <!-- <template #pdf>
         <ImagePreview :image="image?.blob" />
-      </template>
+      </template> -->
       <template #scan>
         <ImagePreview
           :image="scanning ? undefined : scanImage?.blob"
@@ -12,7 +16,6 @@
         />
       </template>
     </SideBySidePreview>
-    <PreviewPagination v-model:page="page" :numPages="numPages" v-if="numPages >= 2" />
   </n-space>
 </template>
 
@@ -22,7 +25,7 @@ import ImagePreview from './ImagePreview.vue'
 import { ref } from 'vue'
 import { computedAsync } from '@vueuse/core'
 import PreviewPagination from './PreviewPagination.vue'
-import { NSpace } from 'naive-ui'
+import { NSpace, NFlex } from 'naive-ui'
 
 const page = ref(1)
 const scanning = ref(false)

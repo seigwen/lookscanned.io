@@ -5,7 +5,7 @@
     :style="{ '--progress': (progress ?? 0) * 100 + '%' }"
   >
     <n-space justify="space-around" size="large">
-      <n-button text @click="download" v-if="pdf">
+      <n-button type="primary" @click="download" v-if="pdf">
         <template #icon>
           <n-icon>
             <DocumentDownload />
@@ -13,7 +13,7 @@
         </template>
         {{ t('actions.downloadScannedPDF') }}
       </n-button>
-      <n-button text @click="emit('generate')" :disabled="saving" v-else>
+      <n-button type="info" @click="emit('generate')" :disabled="saving" v-else>
         <template #icon>
           <n-icon>
             <AdfScannerOutlined />

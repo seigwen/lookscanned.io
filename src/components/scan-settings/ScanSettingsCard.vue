@@ -15,26 +15,25 @@
         </n-icon>
       </template>
       <n-collapse-item :title="t('settings.settings')" name="Settings">
-        <!-- Scan Settings -->
-        <n-space :size="40" style="margin-bottom: 10px">
+        <n-form label-placement="left">
+          <!-- Scan Settings -->
           <ColorspaceSetting v-model:colorspace="config.colorspace" />
           <BorderSetting v-model:border="config.border" />
-        </n-space>
-
-        <RotateSetting v-model:rotate="config.rotate" />
-        <RotateVarianceSetting v-model:rotate_var="config.rotate_var" />
-        <BrightnessSetting v-model:brightness="config.brightness" />
-        <ContrastSetting v-model:contrast="config.contrast" />
-        <BlurSetting v-model:blur="config.blur" />
-        <NoiseSetting v-model:noise="config.noise" />
-        <ScaleSetting v-model:scale="config.scale" />
+          <RotateSetting v-model:rotate="config.rotate" />
+          <RotateVarianceSetting v-model:rotate_var="config.rotate_var" />
+          <BrightnessSetting v-model:brightness="config.brightness" />
+          <ContrastSetting v-model:contrast="config.contrast" />
+          <BlurSetting v-model:blur="config.blur" />
+          <NoiseSetting v-model:noise="config.noise" />
+          <ScaleSetting v-model:scale="config.scale" />
+        </n-form>
       </n-collapse-item>
     </n-collapse>
   </n-card>
 </template>
 
 <script lang="ts" setup>
-import { NCard, NSpace, NCollapse, NCollapseItem, NIcon } from 'naive-ui'
+import { NCard, NForm, NSpace, NCollapse, NCollapseItem, NIcon } from 'naive-ui'
 import { AreaCustom } from '@vicons/carbon'
 import { ChevronDown12Regular } from '@vicons/fluent'
 
