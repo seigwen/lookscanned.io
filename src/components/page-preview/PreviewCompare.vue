@@ -5,11 +5,17 @@
       <PreviewPagination v-model:page="page" :numPages="numPages" v-if="numPages >= 2" />
     </n-flex>
     <SideBySidePreview>
+      <!--原文件-->
       <!-- <template #pdf>
         <ImagePreview :image="image?.blob" />
       </template> -->
+      <!--效果预览-->
       <template #scan>
+        <div v-if="scanning" style="text-align: center; margin-top: 50px;">
+          <n-spin size="small"/>
+        </div>        
         <ImagePreview
+          v-show="!scanning"
           :image="scanning ? undefined : scanImage?.blob"
           :height="image?.height"
           :width="image?.width"
@@ -25,7 +31,7 @@ import ImagePreview from './ImagePreview.vue'
 import { ref } from 'vue'
 import { computedAsync } from '@vueuse/core'
 import PreviewPagination from './PreviewPagination.vue'
-import { NSpace, NFlex } from 'naive-ui'
+import { NSpace, NFlex, NSpin } from 'naive-ui'
 
 const page = ref(1)
 const scanning = ref(false)

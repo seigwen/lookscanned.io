@@ -26,7 +26,7 @@
           <BlurSetting v-model:blur="config.blur" />
           <NoiseSetting v-model:noise="config.noise" />
           <ScaleSetting v-model:scale="config.scale" />
-          <n-flex justify="center">
+          <n-flex justify="center" style="margin-top: 20px;">
             <n-button type="warning" @click="reset">{{ t('settings.reset') }}</n-button>
           </n-flex>
         </n-form>
