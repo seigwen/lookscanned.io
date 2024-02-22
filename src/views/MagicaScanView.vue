@@ -1,22 +1,13 @@
 <template>
-  <MainContainer>
+  <MainContainer class="main-container">
     <n-grid x-gap="25" y-gap="25" :cols="12" item-responsive responsive="screen">
       <n-grid-item span="12 s:5 m:4 l:3">
         <n-space vertical>
-          <PDFUpload @update:pdf="pdf = $event" />
-          <PDFInfo :pdf="pdf" v-if="pdf" />
-
-          <ScanSettingsCard v-model:config="config" />
-
-          <SaveButtonCard
-            @generate="generate"
-            :progress="progress"
-            :saving="saving"
-            :pdf="scannedPDF"
-          />
+          <PDFInfo @pdfReselected="pdf = $event" :pdf="pdf" />
+          <ScanSettingsCard v-if="pdf" v-model:config="config" @reset="resetConfig"/>
         </n-space>
       </n-grid-item>
-      <n-grid-item span="12 s:7 m:8 l:9">
+      <n-grid-item v-if="pdf" span="12 s:7 m:8 l:9">
         <PreviewCompare
           :pdfRenderer="pdfRenderer"
           :scanRenderer="scanRenderer"
@@ -24,6 +15,14 @@
         />
       </n-grid-item>
     </n-grid>
+    <SaveButtonCard
+      v-if="pdf"
+      class="save-btn-card"
+      @generate="generate"
+      :progress="progress"
+      :saving="saving"
+      :pdf="scannedPDF"
+    ></SaveButtonCard>
   </MainContainer>
 </template>
 
@@ -53,20 +52,29 @@ useHead({
   meta: [{ name: 'description', content: t('base.description') }]
 })
 
+/**
+ * pdf文件
+ */
 const pdf = ref<File | undefined>(undefined)
 
-const initExamplePDF = async () => {
-  const response = await fetch(PDFURL)
-  const blob = await response.blob()
-  const file = new File([blob], 'example.pdf')
-  if (!pdf.value) {
-    pdf.value = file
-  }
-}
-
-initExamplePDF()
+/**
+ * 打开示例pdf
+ */
+// const initExamplePDF = async () => {
+//   const response = await fetch(PDFURL)
+//   const blob = await response.blob()
+//   const file = new File([blob], 'example.pdf')
+//   if (!pdf.value) {
+//     pdf.value = file
+//   }
+// }
+// initExamplePDF()
 
 const config = ref<ScanConfig>(defaultConfig)
+const resetConfig = ()=>{
+  config.value = Object.assign({},defaultConfig)
+}
+
 const pdfRenderer = computed(() => {
   if (!pdf.value) return
 
@@ -100,3 +108,15 @@ const generate = async () => {
   }
 }
 </script>
+
+<style scoped>
+.main-container{
+  padding-bottom: 60px;
+  .save-btn-card{
+    position:fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}
+</style>

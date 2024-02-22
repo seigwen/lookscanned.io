@@ -1,4 +1,5 @@
 export function featureDetect(): boolean {
+  return false
   const windowObjects = [
     'OffscreenCanvas',
     'createImageBitmap',
