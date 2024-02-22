@@ -22,4 +22,7 @@ export const settings = {
   scale: '分辨率',
   brightness: '亮度',
   contrast: '对比度',
+  confirm: "确定",
+  cancel: '取消',
+  sureToResetConfig: "确定要恢复默认值?"
 }

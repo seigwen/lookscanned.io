@@ -26,9 +26,18 @@
           <BlurSetting v-model:blur="config.blur" />
           <NoiseSetting v-model:noise="config.noise" />
           <ScaleSetting v-model:scale="config.scale" />
-          <n-flex justify="center" style="margin-top: 20px;">
-            <n-button type="warning" @click="reset">{{ t('settings.reset') }}</n-button>
-          </n-flex>
+          <n-popconfirm
+            @positive-click="reset"
+            :positive-text="t('settings.confirm')"
+            :negative-text="t('settings.cancel')"
+          >
+            {{ t('settings.sureToResetConfig') }}
+            <template #trigger>
+              <n-flex justify="center" style="margin-top: 20px;">
+                <n-button type="warning">{{ t('settings.reset') }}</n-button>
+              </n-flex>            
+            </template>
+          </n-popconfirm>
         </n-form>
       </n-collapse-item>
     </n-collapse>
@@ -36,7 +45,7 @@
 </template>
 
 <script lang="ts" setup>
-import { NCard, NButton, NFlex, NForm, NSpace, NCollapse, NCollapseItem, NIcon } from 'naive-ui'
+import { NCard, NButton, NFlex, NForm, NSpace, NPopconfirm, NCollapse, NCollapseItem, NIcon } from 'naive-ui'
 import { AreaCustom } from '@vicons/carbon'
 import { ChevronDown12Regular } from '@vicons/fluent'
 
